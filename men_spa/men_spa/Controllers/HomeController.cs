@@ -20,6 +20,16 @@ namespace men_spa.Controllers
 
         public IActionResult Index()
         {
+            //https://stackoverflow.com/questions/2960814/asp-mvc-access-viewdata-array
+            ViewData["mustache_trimming_prices"] = new[]{
+                new ServicePrice("Red Butler trimming", 27),
+                new ServicePrice("French trimming", 20),
+                new ServicePrice("Vietnam trimming", 25),
+                new ServicePrice("Holly Bad Boy", 25),
+                new ServicePrice("Vintage Trimming", 23),
+                new ServicePrice("1977 Styles", 33)
+                };
+            //Todo: Hãy bổ xung code cho mục HAIR AND BEARD CUT PRICES
             return View();
         }
 

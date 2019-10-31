@@ -1,5 +1,6 @@
-﻿@{
+﻿@{    
     ViewData["Title"] = "Home Page";
+    var mustache_trimming_prices = (IEnumerable<ServicePrice>)ViewData["mustache_trimming_prices"];
 }
 <!-- banner -->
 <div class="banner_w3lspvt" id="home">
@@ -167,81 +168,20 @@
 		<div class="row pricing-grids">
 			<div class="col-lg-6  mb-lg-0 mb-5">
 				<div class="padding">
-					 <h3>PRICES FOR MUSTACHE TRIMMING</h3>
-					<!-- Item starts -->
-					<div class="menu-item">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 1</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$7</h6>
-							</div>
-						</div>
-						
-					</div>
-					<!-- Item ends -->
-					<!-- Item starts -->
-					<div class="menu-item my-4">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 2</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$10</h6>
-							</div>
-						</div>
-					</div>
-					<!-- Item ends -->
-					<!-- Item starts -->
-					<div class="menu-item">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 3</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$15</h6>
-							</div>
-						</div>
-						
-					</div>
-					<!-- Item ends -->
-					<!-- Item starts -->
-					<div class="menu-item mt-4">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 4</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$15</h6>
-							</div>
-						</div>
-					</div>
-					<!-- Item ends -->
-					<!-- Item starts -->
-					<div class="menu-item mt-4">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 5</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$20</h6>
-							</div>
-						</div>
-					</div>
-					<!-- Item ends -->
-					<!-- Item starts -->
-					<div class="menu-item mt-4">
-						<div class="row border-dot no-gutters">
-							<div class="col-8 menu-item-name">
-								<h6>Trim your Mustaches style 6</h6>
-							</div>
-							<div class="col-4 menu-item-price text-right">
-								<h6>$25</h6>
-							</div>
-						</div>
-					</div>
-					<!-- Item ends -->
+					<h3>PRICES FOR MUSTACHE TRIMMING</h3>
+                    @foreach (var service_item in mustache_trimming_prices)
+                    {
+                        <div class="menu-item my-4">
+						    <div class="row border-dot no-gutters">
+							    <div class="col-8 menu-item-name">
+								    <h6>@service_item.name</h6>
+							    </div>
+							    <div class="col-4 menu-item-price text-right">
+								    <h6>@service_item.price</h6>
+							    </div>
+						    </div>						
+					    </div>
+                    }
 				</div>
 			</div>
 			<div class="col-lg-6  mb-lg-0 mb-5">
