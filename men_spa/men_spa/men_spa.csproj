@@ -11,4 +11,7 @@
   <ItemGroup>
     <Compile Remove="Views\Home\About.cshtml.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Admin\" />
+  </ItemGroup>
 </Project>

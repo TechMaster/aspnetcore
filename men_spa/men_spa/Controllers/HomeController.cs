@@ -57,6 +57,13 @@ namespace men_spa.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Contact(ContactModel contactModel)
+        {
+            //ViewData["contact"] = contactModel;
+            
+            return View("PostContactSubmit", contactModel);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
