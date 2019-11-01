@@ -5,7 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Dapper.Contrib.Extensions;
+using TableAttribute = Dapper.Contrib.Extensions.TableAttribute;
+using KeyAttribute = Dapper.Contrib.Extensions.KeyAttribute;
 
 namespace dapper_console
 {
@@ -13,7 +15,6 @@ namespace dapper_console
     public class Film
     {
         [Key]
-        [IgnoreInsert]
         public int film_id { get; set; }
         public string title { get; set; }
         public int release_year { get; set; }
@@ -46,6 +47,7 @@ namespace dapper_console
             }
             Console.WriteLine("Done");*/
             QueryFilmsSimpleCRUD();
+            //QueryFimsContrib();
 
 
 
@@ -136,6 +138,18 @@ namespace dapper_console
             {
                 Console.WriteLine($"{item.id}, {item.name}, {item.release_year}");
             }
+        }
+
+        public static void QueryFimsContrib()
+        {
+
+            using var conn = OpenPGConnection(_pgconnStr);
+            dynamic films = conn.GetAll<Film>();
+            foreach (var item in films)
+            {
+                Console.WriteLine($"{item.film_id}, {item.title}, {item.release_year}");
+            }
+
         }
 
     }
