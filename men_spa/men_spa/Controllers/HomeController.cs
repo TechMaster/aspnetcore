@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using men_spa.Models;
-
+using men_spa.Repositories;
 namespace men_spa.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IContactRepository _contactRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IContactRepository contactRepository)
         {
             _logger = logger;
+            _contactRepository = contactRepository;
         }
 
         public IActionResult Index()
@@ -60,8 +62,7 @@ namespace men_spa.Controllers
         [HttpPost]
         public IActionResult Contact(ContactModel contactModel)
         {
-            //ViewData["contact"] = contactModel;
-            
+            _contactRepository.AddNew(contactModel);
             return View("PostContactSubmit", contactModel);
         }
 

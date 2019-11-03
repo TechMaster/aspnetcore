@@ -60,3 +60,31 @@
     }
     ```
 
+# Kết nối vào Dapper
+
+Tham khảo code ở đây nhé [AspNetCoreDapperAsyncDemo](https://github.com/exceptionnotfound/AspNetCoreDapperAsyncDemo)
+
+1. Bổ xung thông tin connection vào appsettings.Development.json
+```json
+"ConnectionStrings": {
+    "postgres_conn": "Server=localhost;Port=5432;Database=dvdrental;User Id=user;Password=abc123"
+  }
+```
+
+2. Tạo IContactRepository.cs
+3. Tạo 2 class implement IContactRepository là InMemoryContactRepository và PostgresContactRepository.cs
+
+tham khao https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7
+
+4. Lệnh tạo bảng contact để lưu các contact
+```sql
+CREATE TABLE public.contact
+(
+    id bigint NOT NULL DEFAULT nextval('contact_id_seq'::regclass),
+    firstname character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    lastname character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    message character varying(512) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT contact_pkey PRIMARY KEY (id)
+)
+```

@@ -13,5 +13,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings %28copy%29.Development.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0" />
+    <PackageReference Include="Npgsql" Version="4.1.1" />
   </ItemGroup>
 </Project>

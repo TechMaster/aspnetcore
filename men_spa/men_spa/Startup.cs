@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using men_spa.Repositories;
 namespace men_spa
 {
     public class Startup
@@ -24,6 +19,12 @@ namespace men_spa
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddSingleton<IContactRepository, PostgresContactRepository>();
+            //Không nên tái sử dụng AddSingleton cho dbConnection, cách này connection dùng chung sẽ phải chờ đợi
+
+            //Sử dụng transient cứ mỗi lần gọi IContactRepository thì đối tượng PostgresContactRepository sẽ được tạo lại
+            services.AddTransient<IContactRepository, PostgresContactRepository>();
+            //Tìm hiểu thêm ở đây nhé https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
